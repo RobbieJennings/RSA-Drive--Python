@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+<p>
+    Welcome to the users page
+</p>
+
+<form action='/'>
+  <button name='file' type='submit'>HOME</button>
+  <br><br>
+</form>
+
+<form action='/groups'>
+  <button name='file' type='submit'>BACK</button>
+  <br><br>
+</form>
+
+<form action='/addUser' method='post'>
+  <input type="text" placeholder="User.." name="user">
+  <input type="submit" value="ADD">
+  <br><br>
+</form>
+
+<script>
+    var users = {{data}};
+
+    var table = "<table border='4'>"
+    for(var i = 0; i < users.length; i++) {
+      table += "<tr>";
+      table += "<td>" + String(users[i]) + "</td>";
+      table += "<td><form action='/removeUser' method='post'>";
+      table += "<button name='user' type='submit' value='" + String(users[i]) + "'>REMOVE</button>"
+      table += "</form></td>"
+      table += "</tr>";
+    }
+    table += "</table>";
+
+    document.write(table);
+</script>
+
+</body>
+
+</html>

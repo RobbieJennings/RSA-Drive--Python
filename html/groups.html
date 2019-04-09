@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+<p>
+    Welcome to the Groups Page
+</p>
+
+<form action='/'>
+  <button name='file' type='submit'>HOME</button>
+  <br><br>
+</form>
+
+<form action='/createGroup' method='post'>
+  <input type="text" placeholder="Group.." name="group">
+  <input type="submit" value="CREATE">
+  <br><br>
+</form>
+
+<script>
+    var groups = {{data}};
+
+    var table = "<table border='4'>"
+    for(var i = 0; i < groups.length; i++) {
+      table += "<tr>";
+      table += "<td>" + String(groups[i][1]) + "</td>";
+      table += "<td><form action='/files' method='post'>";
+      table += "<button name='group' type='submit' value='" + String(groups[i][0]) + "'>FILES</button>"
+      table += "</form></td>"
+      table += "<td><form action='/users' method='post'>";
+      table += "<button name='group' type='submit' value='" + String(groups[i][0]) + "'>USERS</button>"
+      table += "</form></td>"
+      table += "<td><form action='/deleteGroup' method='post'>";
+      table += "<button name='group' type='submit' value='" + String(groups[i][0]) + "'>DELETE</button>"
+      table += "</form></td>"
+      table += "</tr>";
+    }
+    table += "</table>";
+
+    document.write(table);
+</script>
+
+</body>
+
+</html>

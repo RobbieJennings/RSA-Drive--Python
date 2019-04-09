@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+<p>
+    Welcome to the Files Page
+</p>
+
+<form action='/'>
+  <button name='file' type='submit'>HOME</button>
+  <br><br>
+</form>
+
+<form action='/groups'>
+  <button name='file' type='submit'>BACK</button>
+  <br><br>
+</form>
+
+<form action="/upload" method='post'>
+  <input type="file" name="file">
+  <br><br>
+  <input type="submit" value="UPLOAD">
+  <br><br>
+</form>
+
+<script>
+    var files = {{data}};
+
+    var table = "<table border='4'>"
+    for(var i = 0; i < files.length; i++) {
+      table += "<tr>";
+      table += "<td>" + String(files[i][1]) + "</td>";
+      table += "<td><form action='/download' method='post'>";
+      table += "<button name='file' type='submit' value='" + String(files[i][0]) + "'>DOWNLOAD</button>"
+      table += "</form></td>"
+      table += "<td><form action='/delete' method='post'>";
+      table += "<button name='file' type='submit' value='" + String(files[i][0]) + "'>DELETE</button>"
+      table += "</form></td>"
+      table += "</tr>";
+    }
+    table += "</table>";
+
+    document.write(table);
+</script>
+
+</body>
+
+</html>
